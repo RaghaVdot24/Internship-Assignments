@@ -16,7 +16,7 @@ void AADHAR::load()
 	in.open("C:/Users/Raghav Utpat/Documents/aadharcard/aadharcard/src/AADHAR",ios::in); 		//Please set correct file location. The file will be located in the working directory when you run aadharcard.pp
 	if(!in)
 	{
-		cout<<"Please select correct file location\n";
+		cout<<"Please set correct file location in the load function in AADHAR.cpp\n";
 		exit(1);
 	}
 	while(in)

@@ -37,7 +37,7 @@ void write(unordered_map <string ,DETAIL> data)
 	out.close();
 }
 
-int aadhar::validate(int j)
+int aadhar::validate(int j)					//validate mobile nos. and date of birth
 {
 	if(j == 2)
 	{
@@ -77,7 +77,7 @@ void aadhar::insert()
 		cout<<setw(33)<<"Enter Date of Birth (DD MM YYYY) "<<": ";
 		cin>>detail.dob.date>>detail.dob.month>>detail.dob.year;
 		j = validate(1);
-	}while(j);	
+	}while(j);						//repeat until valid input
 	
 	do
 	{
@@ -95,7 +95,7 @@ void aadhar::insert()
 	write(data);
 }
 
-void aadhar::load()
+void aadhar::load()					//load from file into unordered map
 {
 	fstream in;
 	DETAIL de;
@@ -116,7 +116,7 @@ void aadhar::display()
 	for(it = data.begin();it != data.end(); it++)
 	{
 		detail = it->second;
-		if(detail.isBlacklisted == 0)
+		if(detail.isBlacklisted == 0)			//display only if not blacklisted
 			cout<<detail.first_name<<" "<<detail.uid<<" "<<detail.address<<" "<<detail.dob.date<<"-"<<detail.dob.month<<"-"<<detail.dob.year<<endl;
 	}
 }
@@ -126,7 +126,7 @@ void aadhar::delet()
 	cout<<"\nEnter the UID : ";
 	cin>>detail.uid;
 
-	unordered_map<string,DETAIL>::const_iterator it = data.find(detail.uid);
+	unordered_map<string,DETAIL>::const_iterator it = data.find(detail.uid);		//search in O(1)
 
 	if(it == data.end() || it->second.isBlacklisted==1)
 		cout<<"=> UID NOT FOUND\n";
@@ -140,6 +140,7 @@ void aadhar::delet()
 
 void aadhar::update()
 {
+	/*Updates work by removing the current entry and replacing it with the updated entry*/
 	int e;
 	cout<<"\nEnter the UID : ";
 	cin>>detail.uid;
@@ -194,7 +195,7 @@ void aadhar::update()
 	write(data);
 }
 
-void aadhar::addblacklist()
+void aadhar::addblacklist()			//Add elements to blacklist(logically not physically)
 {
 	cout<<"\nEnter the UID to be blacklisted: ";
 	cin>>detail.uid;
@@ -228,7 +229,7 @@ void aadhar::remblacklist()
 	write(data);
 }
 
-void searchfirst(unordered_map <string ,DETAIL> data)
+void searchfirst(unordered_map <string ,DETAIL> data)		//search using first name. Traverse data linearly to find entry
 {
 	string name;
 	cout<<"\n\t\tEnter First Name : ";
@@ -273,7 +274,7 @@ void searchuid(unordered_map <string ,DETAIL> data)
 	string uid;
 	cout<<"\n\t\tEnter UID : ";
 	cin>>uid;
-	unordered_map<string,DETAIL>::const_iterator it = data.find(uid);
+	unordered_map<string,DETAIL>::const_iterator it = data.find(uid);		//search by uid has O(1) complexity
 	cout.setf(ios::left);
 
 	if(it != data.end() && it->second.isBlacklisted!=1)

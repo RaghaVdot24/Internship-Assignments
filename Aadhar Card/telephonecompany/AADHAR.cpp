@@ -13,7 +13,7 @@ void AADHAR::load()
 {
 	fstream in;
 	DETAIL de;
-	in.open("C:/Users/Raghav Utpat/Documents/aadharcard/aadharcard/src/AADHAR",ios::in); 		//Please set correct file location. The file will be located in the working directory when you run aadharcard.pp
+	in.open("C:/Users/Raghav Utpat/Documents/aadharcard/aadharcard/src/AADHAR",ios::in); 		//Please set correct file location. The file will be located in the working directory when you run aadharcard.cpp
 	if(!in)
 	{
 		cout<<"Please set correct file location in the load function in AADHAR.cpp\n";
@@ -47,10 +47,10 @@ void AADHAR::check()
 	cout<<"Enter First Name : ";
 	cin>>detail.first_name;
 
-	unordered_map <string, DETAIL>::iterator it = data.find(detail.uid);
-	if(it != data.end() && it->second.isBlacklisted == 0)
+	unordered_map <string, DETAIL>::iterator it = data.find(detail.uid);	//search - O(1)
+	if(it != data.end() && it->second.isBlacklisted == 0)			//only non blaclisted entries are checked
 	{
-		if((it->second.first_name).compare(detail.first_name) == 0)
+		if((it->second.first_name).compare(detail.first_name) == 0)	//check if record's first name matches input first name
 			cout<<"=> ENTRY IS PRESENT\n";
 		else
 			cout<<"=> FIRST NAME IS INCORRECT\n";

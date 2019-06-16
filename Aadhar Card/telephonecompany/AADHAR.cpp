@@ -13,7 +13,12 @@ void AADHAR::load()
 {
 	fstream in;
 	DETAIL de;
-	in.open("C:/Users/Raghav Utpat/Documents/aadharcard/aadharcard/src/AADHAR",ios::in);
+	in.open("C:/Users/Raghav Utpat/Documents/aadharcard/aadharcard/src/AADHAR",ios::in); 		//Please set correct file location. The file will be located in the working directory when you run aadharcard.pp
+	if(!in)
+	{
+		cout<<"Please select correct file location\n";
+		exit(1);
+	}
 	while(in)
 	{
 		in>>detail.uid>>detail.first_name>>detail.last_name>>detail.mobile>>detail.dob.date>>detail.dob.month>>detail.dob.year>>detail.isBlacklisted;
